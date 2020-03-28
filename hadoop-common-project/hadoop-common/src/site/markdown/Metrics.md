@@ -56,6 +56,7 @@ Each metrics record contains tags such as ProcessName, SessionID and Hostname as
 | `GcNumWarnThresholdExceeded` | Number of times that the GC warn threshold is exceeded |
 | `GcNumInfoThresholdExceeded` | Number of times that the GC info threshold is exceeded |
 | `GcTotalExtraSleepTime` | Total GC extra sleep time in msec |
+| `GcTimePercentage` | The percentage (0..100) of time that the JVM spent in GC pauses within the observation window if `dfs.namenode.gc.time.monitor.enable` is set to true. Use `dfs.namenode.gc.time.monitor.sleep.interval.ms` to specify the sleep interval in msec. Use `dfs.namenode.gc.time.monitor.observation.window.ms` to specify the observation window in msec. |
 
 rpc context
 ===========
@@ -121,6 +122,17 @@ FairCallQueue metrics will only exist if FairCallQueue is enabled. Each metric e
 |:---- |:---- |
 | `FairCallQueueSize_p`*Priority* | Current number of calls in priority queue |
 | `FairCallQueueOverflowedCalls_p`*Priority* | Total number of overflowed calls in priority queue |
+
+DecayRpcSchedulerDetailed
+-------------------------
+
+DecayRpcSchedulerDetailed metrics only exist when DecayRpcScheduler is used (FairCallQueue enabled). It is an addition
+to FairCallQueue metrics. For each level of priority, rpcqueue and rpcprocessing detailed metrics are exposed.
+
+| Name | Description |
+|:---- | :---- |
+|  `DecayRPCSchedulerPriority.`*Priority*`.RpcQueueTime` | RpcQueueTime metrics for each priority |
+|  `DecayRPCSchedulerPriority.`*Priority*`.RpcProcessingTime` | RpcProcessingTime metrics for each priority |
 
 rpcdetailed context
 ===================
